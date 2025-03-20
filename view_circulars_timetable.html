@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Circulars & Timetable</title>
+    <link rel="stylesheet" href="css/main_style.css">
+    <style>
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Circulars & Timetable</h2>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <h3>Latest Circulars</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Circular Details</th>
+                    <th>Updated On</th>
+                </tr>
+            </thead>
+            <tbody id="circularsTable">
+                <tr><td colspan="2">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <h3>Updated Timetable</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timetable Details</th>
+                    <th>Updated On</th>
+                </tr>
+            </thead>
+            <tbody id="timetableTable">
+                <tr><td colspan="2">Loading...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let circularsTable = document.getElementById("circularsTable");
+            let timetableTable = document.getElementById("timetableTable");
+
+            let circulars = JSON.parse(localStorage.getItem("circulars"));
+            let timetable = JSON.parse(localStorage.getItem("timetable"));
+
+            circularsTable.innerHTML = circulars 
+                ? `<tr><td>${circulars.content}</td><td>${circulars.timestamp}</td></tr>`
+                : "<tr><td colspan='2'>No circulars available.</td></tr>";
+            
+            timetableTable.innerHTML = timetable 
+                ? `<tr><td>${timetable.content}</td><td>${timetable.timestamp}</td></tr>`
+                : "<tr><td colspan='2'>No timetable available.</td></tr>";
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Student Login</h2>
+    <div style="text-align: center;">
+        <input type="text" id="studentId" placeholder="Enter Student ID" />
+        <button onclick="studentLogin()">Login</button>
+    </div>
+
+    <div id="studentDashboard" style="display: none; text-align: center; margin-top: 20px;">
+        <h3>Student Dashboard</h3>
+        <button onclick="viewPage('view_circulars_timetable.html')">View Circulars & Timetable</button>
+        <button onclick="viewPage('view_marks.html')">View Marks</button>
+
+
+    </div>
+
+    <script>
+        function studentLogin() {
+            let studentId = document.getElementById("studentId").value;
+            if (studentId) {
+                localStorage.setItem("currentStudent", studentId);
+                document.getElementById("studentDashboard").style.display = "block";
+            } else {
+                alert("Please enter a valid Student ID");
+            }
+        }
+
+        function viewPage(page) {
+            let studentId = localStorage.getItem("currentStudent");
+            if (studentId) {
+                window.location.href = `${page}?rollno=${studentId}`;
+            } else {
+                alert("Please login first.");
+            }
+        }
+    </script>
+</body>
+</html>
+

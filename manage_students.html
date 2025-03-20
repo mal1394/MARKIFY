@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Manage Students</h2>
+    <div style="text-align: center;">
+        <input type="text" id="studentId" placeholder="Enter Student ID" />
+        <input type="text" id="studentName" placeholder="Enter Student Name" />
+        <button onclick="addStudent()">Add Student</button>
+    </div>
+
+    <div id="studentList" style="text-align: center; margin-top: 20px;">
+        <h3>Student Records</h3>
+        <ul id="students"></ul>
+    </div>
+
+    <script>
+        function addStudent() {
+            let studentId = document.getElementById("studentId").value;
+            let studentName = document.getElementById("studentName").value;
+            
+            if (studentId && studentName) {
+                let students = JSON.parse(localStorage.getItem("students")) || [];
+                students.push({ id: studentId, name: studentName });
+                localStorage.setItem("students", JSON.stringify(students));
+                displayStudents();
+            } else {
+                alert("Please enter both Student ID and Name");
+            }
+        }
+
+        function displayStudents() {
+            let students = JSON.parse(localStorage.getItem("students")) || [];
+            let studentList = document.getElementById("students");
+            studentList.innerHTML = "";
+            students.forEach(student => {
+                let li = document.createElement("li");
+                li.textContent = `ID: ${student.id}, Name: ${student.name}`;
+                studentList.appendChild(li);
+            });
+        }
+
+        displayStudents();
+    </script>
+</body>
+</html>

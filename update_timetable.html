@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Timetable</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Update Timetable</h2>
+    <div style="text-align: center;">
+        <textarea id="timetable" placeholder="Enter new timetable details"></textarea>
+        <button onclick="updateTimetable()">Update Timetable</button>
+    </div>
+
+    <script>
+        function updateTimetable() {
+            let data = document.getElementById("timetable").value;
+            if (data) {
+                localStorage.setItem("timetable", JSON.stringify({ content: data, timestamp: new Date().toLocaleString() }));
+                alert("Timetable updated successfully!");
+                document.getElementById("timetable").value = "";
+            } else {
+                alert("Please enter timetable details.");
+            }
+        }
+    </script>
+</body>
+</html>

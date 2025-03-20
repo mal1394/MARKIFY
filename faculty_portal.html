@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Portal</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Faculty Login</h2>
+    <div style="text-align: center;">
+        <input type="password" id="facultyPass" placeholder="Enter Passkey" />
+        <button onclick="facultyLogin()">Login</button>
+    </div>
+
+    <div id="facultyDashboard" style="display: none; text-align: center; margin-top: 20px;">
+        <h3>Faculty Dashboard</h3>
+        <button onclick="location.href='update_timetable.html'">Update Timetable</button>
+        <button onclick="location.href='update_student_records.html'">Update Student Records</button>
+        <button onclick="location.href='update_marks.html'">Update Marks</button>
+        <button onclick="location.href='update_circulars.html'">Update Circulars</button>
+        <button onclick="location.href='update_results.html'">Update Results</button>
+    </div>
+
+    <script>
+        function facultyLogin() {
+            let passkey = document.getElementById("facultyPass").value;
+            const correctPasskey = "faculty123"; // Change this for better security
+
+            if (passkey === correctPasskey) {
+                document.getElementById("facultyDashboard").style.display = "block";
+            } else {
+                alert("Invalid Passkey. Access Denied!");
+            }
+        }
+    </script>
+</body>
+</html>
+
+

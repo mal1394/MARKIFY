@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Marks</title>
+    <link rel="stylesheet" href="css/main_style.css">
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">View Marks</h2>
+    <div style="text-align: center;">
+        <input type="text" id="studentId" placeholder="Enter Roll Number" />
+        <button onclick="viewMarks()">View Marks</button>
+    </div>
+    <div id="marksContainer" style="text-align: center; margin-top: 20px;"></div>
+
+    <script>
+        function viewMarks() {
+            let studentId = document.getElementById("studentId").value;
+            let marksData = JSON.parse(localStorage.getItem("marks_" + studentId));
+            let container = document.getElementById("marksContainer");
+            
+            if (marksData) {
+                container.innerHTML = `
+                    <table>
+                        <tr><th>Subject</th><th>Marks</th></tr>
+                        <tr><td>Subject 1</td><td>${marksData.subject1}</td></tr>
+                        <tr><td>Subject 2</td><td>${marksData.subject2}</td></tr>
+                        <tr><td>Subject 3</td><td>${marksData.subject3}</td></tr>
+                        <tr><td>Subject 4</td><td>${marksData.subject4}</td></tr>
+                        <tr><td>Subject 5</td><td>${marksData.subject5}</td></tr>
+                    </table>
+                    <p>Updated on: ${marksData.timestamp}</p>
+                `;
+            } else {
+                container.innerHTML = "<p>No marks found for this Roll Number.</p>";
+            }
+        }
+    </script>
+</body>
+</html>

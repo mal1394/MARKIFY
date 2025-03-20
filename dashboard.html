@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Welcome to the Dashboard</h2>
+
+    <!-- Role-Based Access Buttons -->
+    <div id="role-buttons" style="text-align: center; margin-top: 20px;">
+        <button id="adminBtn" style="display: none;" onclick="location.href='admin_page.html'">Admin Panel</button>
+        <button id="studentBtn" style="display: none;" onclick="location.href='student_page.html'">Student Dashboard</button>
+    </div>
+
+    <script>
+        window.onload = function checkRole() {
+            let role = localStorage.getItem("role"); // Get role from storage
+            if (role === "admin") {
+                document.getElementById("adminBtn").style.display = "block";
+            } else if (role === "student") {
+                document.getElementById("studentBtn").style.display = "block";
+            } else {
+                // If no valid role, redirect to homepage
+                alert("No role found! Redirecting to homepage...");
+                window.location.href = "index.html";
+            }
+        };
+    </script>
+</body>
+</html>
+

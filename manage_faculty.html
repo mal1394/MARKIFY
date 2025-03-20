@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Faculty</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Manage Faculty</h2>
+    <div style="text-align: center;">
+        <input type="text" id="facultyId" placeholder="Enter Faculty ID" />
+        <input type="text" id="facultyName" placeholder="Enter Faculty Name" />
+        <button onclick="addFaculty()">Add Faculty</button>
+    </div>
+
+    <div id="facultyList" style="text-align: center; margin-top: 20px;">
+        <h3>Faculty Records</h3>
+        <ul id="faculty"></ul>
+    </div>
+
+    <script>
+        function addFaculty() {
+            let facultyId = document.getElementById("facultyId").value;
+            let facultyName = document.getElementById("facultyName").value;
+            
+            if (facultyId && facultyName) {
+                let faculty = JSON.parse(localStorage.getItem("faculty")) || [];
+                faculty.push({ id: facultyId, name: facultyName });
+                localStorage.setItem("faculty", JSON.stringify(faculty));
+                displayFaculty();
+            } else {
+                alert("Please enter both Faculty ID and Name");
+            }
+        }
+
+        function displayFaculty() {
+            let faculty = JSON.parse(localStorage.getItem("faculty")) || [];
+            let facultyList = document.getElementById("faculty");
+            facultyList.innerHTML = "";
+            faculty.forEach(member => {
+                let li = document.createElement("li");
+                li.textContent = `ID: ${member.id}, Name: ${member.name}`;
+                facultyList.appendChild(li);
+            });
+        }
+
+        displayFaculty();
+    </script>
+</body>
+</html>

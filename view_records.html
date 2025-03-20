@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View All Records</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html"><img src="image/logo.png" id="logo-img"></a>
+        <div class="nav-links" id="navLinks">
+            <span class="icon" onclick="hidemenu()">&#10005;</span>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Admission_page.html">Admission</a></li>
+                <li><a href="#course_call">Course</a></li>
+                <li><a href="admin_access.html">Admin</a></li>
+                <li><a href="faculty_portal.html">Faculty</a></li>
+                <li><a href="student_portal.html">Students</a></li>
+                <li><a href="fees_page.html">Fees</a></li>
+                <li><a href="Contact_page.html">Contact</a></li>
+            </ul>
+        </div>
+        <span class="icon" onclick="showmenu()">&#9776;</span>
+    </nav>
+
+    <h2 style="text-align: center;">All Records</h2>
+    <div id="recordsContainer" style="text-align: center; margin-top: 20px;">
+        <h3>Student Records</h3>
+        <ul id="studentRecords"></ul>
+        <h3>Faculty Records</h3>
+        <ul id="facultyRecords"></ul>
+    </div>
+
+    <script>
+        function displayRecords() {
+            let students = JSON.parse(localStorage.getItem("students")) || [];
+            let faculty = JSON.parse(localStorage.getItem("faculty")) || [];
+            
+            let studentRecords = document.getElementById("studentRecords");
+            studentRecords.innerHTML = "";
+            students.forEach(student => {
+                let li = document.createElement("li");
+                li.textContent = `ID: ${student.id}, Name: ${student.name}`;
+                studentRecords.appendChild(li);
+            });
+            
+            let facultyRecords = document.getElementById("facultyRecords");
+            facultyRecords.innerHTML = "";
+            faculty.forEach(member => {
+                let li = document.createElement("li");
+                li.textContent = `ID: ${member.id}, Name: ${member.name}`;
+                facultyRecords.appendChild(li);
+            });
+        }
+
+        displayRecords();
+    </script>
+</body>
+</html>

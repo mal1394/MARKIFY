@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Access</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Admin Login</h2>
+    <div style="text-align: center;">
+        <input type="text" id="adminId" placeholder="Enter Admin ID" />
+        <button onclick="adminLogin()">Login</button>
+    </div>
+
+    <div id="adminPanel" style="display: none; text-align: center; margin-top: 20px;">
+        <h3>Admin Control Panel</h3>
+        <button onclick="manageStudents()">Manage Students</button>
+        <button onclick="manageFaculty()">Manage Faculty</button>
+        <button onclick="viewRecords()">View All Records</button>
+    </div>
+
+    <script>
+        function adminLogin() {
+            let adminId = document.getElementById("adminId").value;
+            if (adminId === "admin123") { // Change this ID for real use
+                document.getElementById("adminPanel").style.display = "block";
+            } else {
+                alert("Invalid Admin ID!");
+            }
+        }
+
+        function manageStudents() {
+            alert("Redirecting to Student Management...");
+            window.location.href = "manage_students.html";
+        }
+
+        function manageFaculty() {
+            alert("Redirecting to Faculty Management...");
+            window.location.href = "manage_faculty.html";
+        }
+
+        function viewRecords() {
+            alert("Redirecting to All Records...");
+            window.location.href = "view_records.html";
+        }
+    </script>
+</body>
+</html>

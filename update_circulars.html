@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Circulars</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Update Circulars</h2>
+    <div style="text-align: center;">
+        <textarea id="circulars" placeholder="Enter circular details"></textarea>
+        <button onclick="updateData('circulars')">Update Circulars</button>
+    </div>
+
+    <script>
+        function updateData(type) {
+            let data = document.getElementById(type).value;
+            if (data) {
+                localStorage.setItem(type, JSON.stringify({ content: data, timestamp: new Date().toLocaleString() }));
+                alert(type + " updated successfully!");
+                document.getElementById(type).value = "";
+            } else {
+                alert("Please enter data to update " + type);
+            }
+        }
+    </script>
+</body>
+</html>

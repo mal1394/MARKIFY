@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student Records</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Update Student Records</h2>
+    <div style="text-align: center;">
+        <input type="text" id="studentId" placeholder="Enter Student ID" />
+        <input type="text" id="studentName" placeholder="Enter Student Name" />
+        <input type="text" id="studentClass" placeholder="Enter Class" />
+        <button onclick="updateStudentRecords()">Update Record</button>
+    </div>
+
+    <script>
+        function updateStudentRecords() {
+            let studentId = document.getElementById("studentId").value;
+            let studentName = document.getElementById("studentName").value;
+            let studentClass = document.getElementById("studentClass").value;
+
+            if (studentId && studentName && studentClass) {
+                let studentData = { id: studentId, name: studentName, class: studentClass };
+                localStorage.setItem("student_" + studentId, JSON.stringify(studentData));
+                alert("Student Record Updated Successfully!");
+            } else {
+                alert("Please enter all details.");
+            }
+        }
+    </script>
+</body>
+</html>

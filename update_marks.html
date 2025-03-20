@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Marks</title>
+    <link rel="stylesheet" href="css/main_style.css">
+</head>
+<body>
+    <h2 style="text-align: center;">Update Marks</h2>
+    <div style="text-align: center;">
+        <input type="text" id="studentId" placeholder="Enter Student ID" /><br><br>
+        <table border="1" align="center">
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>Subject 1</td>
+                <td><input type="number" id="subject1" /></td>
+            </tr>
+            <tr>
+                <td>Subject 2</td>
+                <td><input type="number" id="subject2" /></td>
+            </tr>
+            <tr>
+                <td>Subject 3</td>
+                <td><input type="number" id="subject3" /></td>
+            </tr>
+            <tr>
+                <td>Subject 4</td>
+                <td><input type="number" id="subject4" /></td>
+            </tr>
+            <tr>
+                <td>Subject 5</td>
+                <td><input type="number" id="subject5" /></td>
+            </tr>
+        </table>
+        <br>
+        <button onclick="updateMarks()">Update Marks</button>
+    </div>
+
+    <script>
+        function updateMarks() {
+            let studentId = document.getElementById("studentId").value;
+            let marks = {
+                subject1: document.getElementById("subject1").value,
+                subject2: document.getElementById("subject2").value,
+                subject3: document.getElementById("subject3").value,
+                subject4: document.getElementById("subject4").value,
+                subject5: document.getElementById("subject5").value,
+                timestamp: new Date().toLocaleString()
+            };
+            
+            if (studentId) {
+                localStorage.setItem("marks_" + studentId, JSON.stringify(marks));
+                alert("Marks Updated Successfully!");
+            } else {
+                alert("Please enter Student ID.");
+            }
+        }
+    </script>
+</body>
+</html>
